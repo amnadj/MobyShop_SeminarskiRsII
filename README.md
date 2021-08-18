@@ -2,6 +2,7 @@
 Login podaci za Desktop aplikaciju (ADMIN): Username: admin
 
 Password: test
+
 Login podaci za Desktop aplikaciju (PRODAVAC): Username: prodavac
 
 Password: test
