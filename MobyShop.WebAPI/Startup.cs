@@ -36,7 +36,7 @@ namespace MobyShop.WebAPI
             services.AddControllers();
             services.AddMvc(x => x.Filters.Add<ErrorFilter>()).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddDbContext<MyContext>(x => x.UseSqlServer(Configuration.GetConnectionString("localDatabase")));
+            services.AddDbContext<MyContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DockerSQL")));
 
             services.AddScoped<IUlogeService, UlogeService>();
             services.AddScoped<IKorisniciService, KorisniciService>();
