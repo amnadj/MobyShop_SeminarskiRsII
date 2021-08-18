@@ -13,7 +13,7 @@ services:
     networks:
       - mobyshopnet
 
- mobyshop-api:
+  mobyshop-api:
     restart: unless-stopped
     build:
       context: .
