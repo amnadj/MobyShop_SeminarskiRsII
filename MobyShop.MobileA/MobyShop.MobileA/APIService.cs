@@ -16,7 +16,7 @@ namespace MobyShop.MobileA
         private readonly string _route;
 
 #if DEBUG
-        private string _apiUrl = "http://localhost:62344/api";
+        private string _apiUrl = "http://localhost:5000/api";
 #endif
 #if RELEASE
         private string _apiUrl = "https://p1811WebSite.azure.com/api/";
