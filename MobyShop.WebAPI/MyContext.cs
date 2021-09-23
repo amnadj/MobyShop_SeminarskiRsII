@@ -44,6 +44,7 @@ namespace MobyShop.WebAPI
         public DbSet<Database.ZahtjeviStavke> ZahtjeviStavke { get; set; }
         public DbSet<Database.Obavijesti> Obavijesti { get; set; }
         public DbSet<Database.PoslanaNarudzba> PoslanaNarudzba { get; set; }
+        public DbSet<Database.NarudzbePracenjeInfo> NarudzbePracenjeInfo { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

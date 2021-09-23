@@ -48,15 +48,17 @@ namespace MobyShop.WebAPI.Mappers
             CreateMap<Database.PoslanaNarudzba, PoslanaNarudzbaUpdateRequest>().ReverseMap();
             CreateMap<Database.PoslanaNarudzba, PoslanaNarudzbaInsertRequest>().ReverseMap();
 
+            CreateMap<Database.Narudzba, Narudzbe>();
+            CreateMap<Database.Narudzba, NarudzbeInsertRequest>().ReverseMap();
+
             CreateMap<Database.Ocjene, Ocjene>();
             CreateMap<Database.Ocjene, OcjeneInsertRequest>().ReverseMap();
 
             //CreateMap<Model.Database.ZahtjeviStavke, Model.Models.ZahtjeviStavke>();
             //CreateMap<Model.Database.ZahtjeviStavke, Model.Requests.ZahtjeviStavkeInsertRequest>().ReverseMap();
 
-
-
-
+            CreateMap<Database.NarudzbePracenjeInfo, NarudzbePracenjeInfo>();
+            CreateMap<Database.NarudzbePracenjeInfo, NarudzbePracenjeInfoInsertRequest>().ReverseMap();
 
         }
     }
