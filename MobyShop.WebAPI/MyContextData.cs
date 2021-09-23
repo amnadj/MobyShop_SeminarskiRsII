@@ -202,7 +202,7 @@ namespace MobyShop.WebAPI
                     Telefon = "063132233",
                     KorisnickoIme = "user",
                     LozinkaSalt = Salt[1],
-                    LozinkaHash = KlijentiService.GenerateHash(Salt[0], "test")
+                    LozinkaHash = KlijentiService.GenerateHash(Salt[1], "test")
                 },
                 new Klijenti()
                 {
