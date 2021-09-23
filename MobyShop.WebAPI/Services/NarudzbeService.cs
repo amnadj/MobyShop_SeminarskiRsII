@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using MobyShop.Model.Requests;
 using MobyShop.Models;
 using System;
@@ -11,11 +12,13 @@ namespace MobyShop.WebAPI.Services
     public class NarudzbeService : INarudzbeService
     {
         private readonly MyContext _context;
+        private readonly IMapper _mapper;
 
 
-        public NarudzbeService(MyContext context)
+        public NarudzbeService(MyContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
 
         }
         public List<Narudzbe> Get(NarudzbeSearchRequest search)
@@ -89,7 +92,7 @@ namespace MobyShop.WebAPI.Services
             return nova;
         }
 
-        public void Insert(NarudzbeInsertRequest request)
+        public Models.Narudzbe Insert(NarudzbeInsertRequest request)
         {
 
             Database.Narudzba nova = new Database.Narudzba();
@@ -132,6 +135,8 @@ namespace MobyShop.WebAPI.Services
                 _context.NarudzbaStavke.Add(stavka);
                 _context.SaveChanges();
             }
+
+            return _mapper.Map<Narudzbe>(nova);
         }
         public void Update(int id, NarudzbeInsertRequest request)
         {

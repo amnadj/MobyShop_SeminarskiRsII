@@ -14,8 +14,6 @@ namespace MobyShop.WebAPI.Mappers
         {
 
 
-            //CreateMap<Model.Database.Zahtjevi, Model.Models.Zahtjevi>();
-            //CreateMap<Model.Database.Zahtjevi, Model.Requests.ZahtjeviInsertRequest>().ReverseMap();
             CreateMap<Database.Uloge, Uloge>();
 
             CreateMap<Database.Korisnici, KorisniciInsertRequest>().ReverseMap();
@@ -54,8 +52,6 @@ namespace MobyShop.WebAPI.Mappers
             CreateMap<Database.Ocjene, Ocjene>();
             CreateMap<Database.Ocjene, OcjeneInsertRequest>().ReverseMap();
 
-            //CreateMap<Model.Database.ZahtjeviStavke, Model.Models.ZahtjeviStavke>();
-            //CreateMap<Model.Database.ZahtjeviStavke, Model.Requests.ZahtjeviStavkeInsertRequest>().ReverseMap();
 
             CreateMap<Database.NarudzbePracenjeInfo, NarudzbePracenjeInfo>();
             CreateMap<Database.NarudzbePracenjeInfo, NarudzbePracenjeInfoInsertRequest>().ReverseMap();

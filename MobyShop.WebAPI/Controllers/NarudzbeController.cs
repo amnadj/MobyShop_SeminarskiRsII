@@ -30,9 +30,9 @@ namespace MobyShop.WebAPI.Controllers
             return _service.GetById(id);
         }
         [HttpPost]
-        public void Insert(NarudzbeInsertRequest request)
+        public Narudzbe Insert(NarudzbeInsertRequest request)
         {
-            _service.Insert(request);
+            return _service.Insert(request);
         }
         [HttpPut("{id}")]
         public void Update(int id, NarudzbeInsertRequest request)

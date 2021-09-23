@@ -37,8 +37,8 @@
             this.Kolicina = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Popust = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnNarudzbaPoslana = new System.Windows.Forms.Button();
             this.cmbSkladista = new System.Windows.Forms.ComboBox();
-            this.btnZakljuci = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.txtKlijent = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -131,8 +131,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnNarudzbaPoslana);
             this.groupBox1.Controls.Add(this.cmbSkladista);
-            this.groupBox1.Controls.Add(this.btnZakljuci);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.txtKlijent);
             this.groupBox1.Controls.Add(this.label5);
@@ -153,23 +153,24 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Detalji narudzbe";
             // 
+            // btnNarudzbaPoslana
+            // 
+            this.btnNarudzbaPoslana.Enabled = false;
+            this.btnNarudzbaPoslana.Location = new System.Drawing.Point(364, 128);
+            this.btnNarudzbaPoslana.Name = "btnNarudzbaPoslana";
+            this.btnNarudzbaPoslana.Size = new System.Drawing.Size(166, 31);
+            this.btnNarudzbaPoslana.TabIndex = 18;
+            this.btnNarudzbaPoslana.Text = "Potvrdi da je narudžba poslana";
+            this.btnNarudzbaPoslana.UseVisualStyleBackColor = true;
+            this.btnNarudzbaPoslana.Click += new System.EventHandler(this.btnNarudzbaPoslana_Click);
+            // 
             // cmbSkladista
             // 
             this.cmbSkladista.FormattingEnabled = true;
-            this.cmbSkladista.Location = new System.Drawing.Point(373, 52);
+            this.cmbSkladista.Location = new System.Drawing.Point(373, 53);
             this.cmbSkladista.Name = "cmbSkladista";
             this.cmbSkladista.Size = new System.Drawing.Size(157, 21);
             this.cmbSkladista.TabIndex = 17;
-            // 
-            // btnZakljuci
-            // 
-            this.btnZakljuci.Location = new System.Drawing.Point(373, 128);
-            this.btnZakljuci.Name = "btnZakljuci";
-            this.btnZakljuci.Size = new System.Drawing.Size(157, 31);
-            this.btnZakljuci.TabIndex = 16;
-            this.btnZakljuci.Text = "Zakljuci narudzbu";
-            this.btnZakljuci.UseVisualStyleBackColor = true;
-            this.btnZakljuci.Click += new System.EventHandler(this.btnZakljuci_Click);
             // 
             // label6
             // 
@@ -182,7 +183,7 @@
             // 
             // txtKlijent
             // 
-            this.txtKlijent.Location = new System.Drawing.Point(373, 20);
+            this.txtKlijent.Location = new System.Drawing.Point(373, 27);
             this.txtKlijent.Name = "txtKlijent";
             this.txtKlijent.ReadOnly = true;
             this.txtKlijent.Size = new System.Drawing.Size(157, 20);
@@ -318,7 +319,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Popust;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox cmbSkladista;
-        private System.Windows.Forms.Button btnZakljuci;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtKlijent;
         private System.Windows.Forms.Label label5;
@@ -332,5 +332,6 @@
         private System.Windows.Forms.TextBox txtBrojNarudzbe;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnNarudzbaPoslana;
     }
 }

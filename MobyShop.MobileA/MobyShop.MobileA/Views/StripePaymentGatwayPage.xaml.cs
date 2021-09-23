@@ -14,12 +14,13 @@ namespace MobyShop.MobileA.Views
     public partial class StripePaymentGatwayPage : ContentPage
     {
         PaymentGatewayPageViewModel model = null;
-        public StripePaymentGatwayPage(decimal Iznos)
+        public StripePaymentGatwayPage(decimal Iznos, int NarudzbaId)
         {
             InitializeComponent();
             BindingContext = model = new PaymentGatewayPageViewModel()
             {
-                Iznos = Iznos
+                Iznos = Iznos,
+                NarudzbaId = NarudzbaId
             };
 
             NavigationPage.SetHasBackButton(this, false);

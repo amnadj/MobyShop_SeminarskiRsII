@@ -24,6 +24,9 @@ namespace MobyShop.MobileA.ViewModels
         private string _expYear;
         private string _title;
 
+
+        private APIService _servicePracenje = new APIService("NarudzbePracenjeInfo");
+
         #endregion Variable
 
         #region Public Property
@@ -119,6 +122,13 @@ namespace MobyShop.MobileA.ViewModels
 
             if (IsTransectionSuccess)
             {
+                await _servicePracenje.Insert<NarudzbePracenjeInfo>(new Model.Requests.NarudzbePracenjeInfoInsertRequest
+                {
+                    NarudzbaId = NarudzbaId,
+                    Datum = DateTime.Now,
+                    StatusPracenja = StatusPracenja.Potvrđena
+                });
+
                 Console.Write("Payment Gateway" + "Payment Successful ");
                 UserDialogs.Instance.Alert("Your payment was successfull", "Payment success", "OK");
                 UserDialogs.Instance.HideLoading();
@@ -134,6 +144,8 @@ namespace MobyShop.MobileA.ViewModels
 
 
         });
+
+        public int NarudzbaId { get; set; }
 
         #endregion Command
 

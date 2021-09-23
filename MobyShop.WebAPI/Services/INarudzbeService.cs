@@ -12,7 +12,7 @@ namespace MobyShop.WebAPI.Services
 
         Models.Narudzbe GetById(int id);
 
-        void Insert(NarudzbeInsertRequest request);
+        Models.Narudzbe Insert(NarudzbeInsertRequest request);
 
         void Update(int id, NarudzbeInsertRequest request);
     }

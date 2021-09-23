@@ -16,6 +16,7 @@ namespace MobyShop.WinUI.Narudzbe
         private readonly APIService _serviceNarudzbe = new APIService("Narudzbe");
         private readonly APIService _serviceStavke = new APIService("StavkeNarudzbe");
         private readonly APIService _serviceSkladiste = new APIService("Skladista");
+        private readonly APIService _servicePracenje = new APIService("NarudzbePracenjeInfo");
         private int _id;
 
         public frmNarudzbeDetalji(int id)
@@ -50,7 +51,7 @@ namespace MobyShop.WinUI.Narudzbe
             cmbSkladista.DataSource = skladista_result;
             cmbSkladista.DisplayMember = "Naziv";
             cmbSkladista.ValueMember = "SkladisteId";
-
+            cmbSkladista.SelectedValue = narudzba.SkladisteId;
 
             List<Models.StavkeNarudzbe> listastavki = await _serviceStavke.Get<List<Models.StavkeNarudzbe>>(null);
 
@@ -75,37 +76,81 @@ namespace MobyShop.WinUI.Narudzbe
             }
 
             dataGridView1.DataSource = result;
+
+            var pracenje = await _servicePracenje.Get<List<Models.NarudzbePracenjeInfo>>(new Model.Requests.NarudzbePracenjeInfoSearchRequest
+            {
+                NarudzbaId = _id
+            });
+
+            if (narudzba.Otkazano == false)
+            {
+                if (pracenje.Any(x => x.StatusPracenja == Models.StatusPracenja.Potvrđena) && !pracenje.Any(x => x.StatusPracenja == Models.StatusPracenja.Poslana))
+                {
+                    btnNarudzbaPoslana.Enabled = true;
+                }
+            }
         }
 
-        private async void btnZakljuci_Click(object sender, EventArgs e)
+        private async void btnNarudzbaPoslana_Click(object sender, EventArgs e)
         {
+            if(cmbSkladista.SelectedItem == null || (cmbSkladista.SelectedItem as Models.Skladista).SkladisteId == 0)
+            {
+                MessageBox.Show("Odaberite skladište.");
+                return;
+            }
 
             Models.Narudzbe narudzba = await _serviceNarudzbe.GetById<Models.Narudzbe>(_id);
-
-            if (narudzba.SkladisteId == 1 || narudzba.KorisnikId == 1)
+            if(narudzba.Otkazano.HasValue && narudzba.Otkazano.Value)
             {
-                var request = new NarudzbeInsertRequest()
+                MessageBox.Show("Narudžba je otkazana.");
+                return;
+            }
+
+            var pracenje = await _servicePracenje.Get<List<Models.NarudzbePracenjeInfo>>(new Model.Requests.NarudzbePracenjeInfoSearchRequest
+            {
+                NarudzbaId = _id
+            });
+
+            if (pracenje.Any(x => x.StatusPracenja == Models.StatusPracenja.Potvrđena) && !pracenje.Any(x => x.StatusPracenja == Models.StatusPracenja.Poslana))
+            {
+                _servicePracenje.Insert<Models.NarudzbePracenjeInfo>(new Model.Requests.NarudzbePracenjeInfoInsertRequest
                 {
-                    BrojNarudzbe = narudzba.BrojNarudzbe,
-                    Datum = narudzba.Datum,
-                    IznosBezPdv = narudzba.IznosBezPdv,
-                    IznosSaPdv = narudzba.IznosSaPdv,
-                    KlijentId = narudzba.KlijentId,
-                    KorisnikId = Global.PrijavljeniKorisnik.KorisnikId,
-                    Otkazano = narudzba.Otkazano,
-                    SkladisteId = int.Parse(cmbSkladista.SelectedValue.ToString()),
-                    Status = narudzba.Status
-                };
+                    NarudzbaId = _id,
+                    Datum = DateTime.Now,
+                    StatusPracenja = Models.StatusPracenja.Poslana
+                });
 
+                btnNarudzbaPoslana.Enabled = false;
 
-                _serviceNarudzbe.Update<Models.Narudzbe>(_id, request);
+                if (narudzba.SkladisteId == 1 || narudzba.KorisnikId == 1)
+                {
+                    ZakljuciNarudzbu(narudzba);
+                }
 
-                MessageBox.Show("Uspjesno zakljucena narudzba");
+                 MessageBox.Show("Uspješno promijenjeno stanje narudžbe.");
             }
             else
             {
-                MessageBox.Show("Narudzba je vec zakljucena");
+                MessageBox.Show("Greška: narudžba nije u ispravnom stanju (nije potvđena ili je već poslana).");
             }
+        }
+
+        private void ZakljuciNarudzbu(Models.Narudzbe narudzba)
+        {
+            var request = new NarudzbeInsertRequest()
+            {
+                BrojNarudzbe = narudzba.BrojNarudzbe,
+                Datum = narudzba.Datum,
+                IznosBezPdv = narudzba.IznosBezPdv,
+                IznosSaPdv = narudzba.IznosSaPdv,
+                KlijentId = narudzba.KlijentId,
+                KorisnikId = Global.PrijavljeniKorisnik.KorisnikId,
+                Otkazano = narudzba.Otkazano,
+                SkladisteId = int.Parse(cmbSkladista.SelectedValue.ToString()),
+                Status = narudzba.Status
+            };
+
+            _serviceNarudzbe.Update<Models.Narudzbe>(_id, request);
         }
     }
 }

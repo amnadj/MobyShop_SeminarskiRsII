@@ -17,6 +17,7 @@ namespace MobyShop.WebAPI.Database
 
     public enum StatusPracenja
     {
+        Kreirana,
         Potvrđena,
         Poslana,
         Stigla,

@@ -27,10 +27,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\ArtikliPage.xaml.cs">
+      <DependentUpon>ArtikliPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\NarudzbaPracenjePage.xaml.cs">
+      <DependentUpon>NarudzbaPracenjePage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="Views\ArtikliDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ArtikliPage.xaml">
+    <EmbeddedResource Update="Views\NarudzbaPracenjePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\HistorijaNarudzbiDetailPage.xaml">

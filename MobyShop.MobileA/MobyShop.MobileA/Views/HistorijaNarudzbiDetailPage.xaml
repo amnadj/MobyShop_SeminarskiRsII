@@ -124,7 +124,8 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Text="Potvrdi da je ova narudzba primljena " Clicked="Button_Clicked" ></Button>
+            <Button x:Name="PratiBtn" Text="Prati narudžbu" Clicked="PratiBtn_Clicked" ></Button>
+            <Button Text="Potvrdi da je ova narudzba primljena " IsEnabled="{Binding IsPrimljenaEnabled}"  Clicked="Button_Clicked" ></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

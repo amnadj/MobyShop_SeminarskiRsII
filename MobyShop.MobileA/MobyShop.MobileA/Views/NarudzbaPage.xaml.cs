@@ -20,6 +20,7 @@ namespace MobyShop.MobileA.Views
         private decimal PDV = 0.17M;
         private NarudzbaViewModel model = null;
         private APIService _service = new APIService("Narudzbe");
+        private APIService _servicePracenje = new APIService("NarudzbePracenjeInfo");
         public NarudzbaPage()
         {
             InitializeComponent();
@@ -80,7 +81,14 @@ namespace MobyShop.MobileA.Views
 
 
 
-            await _service.Insert<Narudzbe>(request);
+            var narudzba = await _service.Insert<Narudzbe>(request);
+
+            await _servicePracenje.Insert<NarudzbePracenjeInfo>(new Model.Requests.NarudzbePracenjeInfoInsertRequest
+            {
+                NarudzbaId = narudzba.NarudzbaId,
+                Datum = DateTime.Now,
+                StatusPracenja = StatusPracenja.Kreirana
+            });
 
 
             await DisplayAlert("Uspjeh", "Uspjesno ste napravili novu narudzbu", "OK");
@@ -89,7 +97,7 @@ namespace MobyShop.MobileA.Views
             lblBrojArtikala.Text = "Broj artikala: 0";
             lblIznos.Text = "Iznos: 0 KM";
 
-            await Navigation.PushAsync(new StripePaymentGatwayPage(model.Iznos));
+            await Navigation.PushAsync(new StripePaymentGatwayPage(model.Iznos, narudzba.NarudzbaId));
 
         }
 
