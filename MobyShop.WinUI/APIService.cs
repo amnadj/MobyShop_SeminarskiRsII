@@ -1,4 +1,5 @@
 ﻿using Flurl.Http;
+using Microsoft.AspNetCore.Mvc;
 using MobyShop.Models;
 using System;
 using System.Collections.Generic;
@@ -58,7 +59,24 @@ namespace MobyShop.WinUI
         {
             var url = $"{Properties.Settings.Default.APIUrl}/{_route}/GetBySifra/{sifra}";
 
-            return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
+
+            try
+            {
+                return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
+            }
+            catch (FlurlHttpException ex)
+            {
+                var errors = await ex.GetResponseJsonAsync<ValidationProblemDetails>();
+
+                var stringBuilder = new StringBuilder();
+                foreach (var error in errors.Errors)
+                {
+                    stringBuilder.AppendLine($"{error.Key}, {string.Join(",", error.Value)}");
+                }
+
+                MessageBox.Show(stringBuilder.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return default(T);
+            }
         }
         public async Task<T> Authenticiraj<T>(string username, string password)
         {
@@ -90,12 +108,12 @@ namespace MobyShop.WinUI
             }
             catch (FlurlHttpException ex)
             {
-                var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
+                var errors = await ex.GetResponseJsonAsync<ValidationProblemDetails>();
 
                 var stringBuilder = new StringBuilder();
-                foreach (var error in errors)
+                foreach (var error in errors.Errors)
                 {
-                    stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                    stringBuilder.AppendLine($"{error.Key}, {string.Join(",", error.Value)}");
                 }
 
                 MessageBox.Show(stringBuilder.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -114,12 +132,12 @@ namespace MobyShop.WinUI
             }
             catch (FlurlHttpException ex)
             {
-                var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
+                var errors = await ex.GetResponseJsonAsync<ValidationProblemDetails>();
 
                 var stringBuilder = new StringBuilder();
-                foreach (var error in errors)
+                foreach (var error in errors.Errors)
                 {
-                    stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                    stringBuilder.AppendLine($"{error.Key}, {string.Join(",", error.Value)}");
                 }
 
                 MessageBox.Show(stringBuilder.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);

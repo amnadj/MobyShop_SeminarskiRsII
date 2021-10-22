@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnZakljuci = new System.Windows.Forms.Button();
             this.txtPDV = new System.Windows.Forms.TextBox();
             this.txtIznosRacuna = new System.Windows.Forms.TextBox();
@@ -162,6 +162,7 @@
             this.txtNapomena.Name = "txtNapomena";
             this.txtNapomena.Size = new System.Drawing.Size(200, 20);
             this.txtNapomena.TabIndex = 5;
+            this.txtNapomena.Validating += new System.ComponentModel.CancelEventHandler(this.txtNapomena_Validating);
             // 
             // label3
             // 
@@ -202,14 +203,14 @@
             this.dgvStavkeNabavke.AllowUserToAddRows = false;
             this.dgvStavkeNabavke.AllowUserToDeleteRows = false;
             this.dgvStavkeNabavke.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvStavkeNabavke.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvStavkeNabavke.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvStavkeNabavke.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvStavkeNabavke.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.NabavkaStavkeId,
@@ -217,25 +218,25 @@
             this.Sifra,
             this.Kolicina,
             this.Cijena});
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvStavkeNabavke.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvStavkeNabavke.DefaultCellStyle = dataGridViewCellStyle11;
             this.dgvStavkeNabavke.Location = new System.Drawing.Point(23, 94);
             this.dgvStavkeNabavke.Name = "dgvStavkeNabavke";
             this.dgvStavkeNabavke.ReadOnly = true;
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvStavkeNabavke.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvStavkeNabavke.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dgvStavkeNabavke.Size = new System.Drawing.Size(454, 151);
             this.dgvStavkeNabavke.TabIndex = 23;
             // 
@@ -290,6 +291,7 @@
             this.txtKolicina.Name = "txtKolicina";
             this.txtKolicina.Size = new System.Drawing.Size(129, 20);
             this.txtKolicina.TabIndex = 21;
+            this.txtKolicina.Validating += new System.ComponentModel.CancelEventHandler(this.txtKolicina_Validating);
             // 
             // cmbDobavljaci
             // 
@@ -298,6 +300,7 @@
             this.cmbDobavljaci.Name = "cmbDobavljaci";
             this.cmbDobavljaci.Size = new System.Drawing.Size(179, 21);
             this.cmbDobavljaci.TabIndex = 10;
+            this.cmbDobavljaci.Validating += new System.ComponentModel.CancelEventHandler(this.cmbDobavljaci_Validating);
             // 
             // label2
             // 
@@ -314,6 +317,7 @@
             this.txtBrojNabavke.Name = "txtBrojNabavke";
             this.txtBrojNabavke.Size = new System.Drawing.Size(67, 20);
             this.txtBrojNabavke.TabIndex = 1;
+            this.txtBrojNabavke.Validating += new System.ComponentModel.CancelEventHandler(this.txtBrojNabavke_Validating);
             // 
             // label1
             // 
