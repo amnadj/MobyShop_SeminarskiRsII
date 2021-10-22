@@ -12,6 +12,9 @@ namespace MobyShop.WinUI
     public class APIService
     {
 
+        public static string Username { get; set; }
+        public static string Password { get; set; }
+
         private readonly string _route;
         public APIService(string route)
         {
@@ -32,7 +35,7 @@ namespace MobyShop.WinUI
 
                 }
 
-                return await url.GetJsonAsync<T>();
+                return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
 
             }
             catch (FlurlHttpException ex)
@@ -49,32 +52,32 @@ namespace MobyShop.WinUI
         {
             var url = $"{Properties.Settings.Default.APIUrl}/{_route}/{id}";
 
-            return await url.GetJsonAsync<T>();
+            return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
         }
         public async Task<T> GetBySifra<T>(string sifra)
         {
             var url = $"{Properties.Settings.Default.APIUrl}/{_route}/GetBySifra/{sifra}";
 
-            return await url.GetJsonAsync<T>();
+            return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
         }
         public async Task<T> Authenticiraj<T>(string username, string password)
         {
             var url = $"{Properties.Settings.Default.APIUrl}/{_route}/Authenticiraj/{username},{password}";
 
-            return await url.GetJsonAsync<T>();
+            return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
         }
         public async Task<T> ProvjeriAdmin<T>(int UlogaId)
         {
             var url = $"{Properties.Settings.Default.APIUrl}/{_route}/ProvjeriAdmin/{UlogaId}";
 
-            return await url.GetJsonAsync<T>();
+            return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
         }
 
         public async Task<T> SveUloge<T>(int KorisnikId)
         {
             var url = $"{Properties.Settings.Default.APIUrl}/{_route}/SveUloge/{KorisnikId}";
 
-            return await url.GetJsonAsync<T>();
+            return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
         }
 
         public async void Insert<T>(object request)
@@ -83,7 +86,7 @@ namespace MobyShop.WinUI
 
             try
             {
-                await url.PostJsonAsync(request).ReceiveJson<T>();
+                await url.WithBasicAuth(Username, Password).PostJsonAsync(request).ReceiveJson<T>();
             }
             catch (FlurlHttpException ex)
             {
@@ -107,7 +110,7 @@ namespace MobyShop.WinUI
 
                 var obj = Newtonsoft.Json.JsonConvert.SerializeObject(request);
 
-                await url.PutJsonAsync(request).ReceiveJson<T>();
+                await url.WithBasicAuth(Username, Password).PutJsonAsync(request).ReceiveJson<T>();
             }
             catch (FlurlHttpException ex)
             {

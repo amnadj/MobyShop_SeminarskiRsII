@@ -33,7 +33,7 @@ namespace MobyShop.WebAPI.Services
 
                 if (hashedPass == user.LozinkaHash)
                 {
-                    var uloge = _context.KorisniciUloge.Where(x => x.KorisnikId == user.KorisnikId);
+                    var uloge = _context.KorisniciUloge.Include(x=>x.Uloga).Where(x => x.KorisnikId == user.KorisnikId);
                     Korisnici novikorisnik = new Korisnici();
 
                     foreach (var item in uloge)
@@ -45,7 +45,13 @@ namespace MobyShop.WebAPI.Services
                             DatumIzmjene = item.DatumIzmjene,
                             KorisnikId = item.KorisnikId,
                             UlogaId = item.UlogaId,
-                            KorisnikUlogaId = item.KorisnikUlogaId
+                            KorisnikUlogaId = item.KorisnikUlogaId,
+                            Uloga = new Uloge
+                            {
+                                Naziv = item.Uloga.Naziv,
+                                Opis = item.Uloga.Opis,
+                                UlogaId = item.Uloga.UlogaId
+                            }
                         });
                     }
                     novikorisnik.Ime = user.Ime;

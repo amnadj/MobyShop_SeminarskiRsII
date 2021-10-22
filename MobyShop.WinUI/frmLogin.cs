@@ -34,6 +34,8 @@ namespace MobyShop.WinUI
             if (korisnik != null)
             {
                 Global.PrijavljeniKorisnik = korisnik;
+                APIService.Username = txtKorisnickoIme.Text;
+                APIService.Password = txtPassword.Text;
 
                 foreach (var item in Global.PrijavljeniKorisnik.KorisniciUloge)
                 {

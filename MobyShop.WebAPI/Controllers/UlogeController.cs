@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MobyShop.WebAPI.Services;
 using MobyShop.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MobyShop.WebAPI.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class UlogeController : ControllerBase
     {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MobyShop.Model.Requests;
 using MobyShop.Models;
@@ -11,6 +12,7 @@ namespace MobyShop.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class DobavljaciController : ControllerBase
     {
         private readonly IDobavljaciService _service;

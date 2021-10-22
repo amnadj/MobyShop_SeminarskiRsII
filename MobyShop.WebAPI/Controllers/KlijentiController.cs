@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MobyShop.Model.Requests;
 using MobyShop.WebAPI.Services;
@@ -9,6 +10,7 @@ using MobyShop.WebAPI.Services;
 namespace MobyShop.WebAPI.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class KlijentiController : ControllerBase
     {
@@ -19,11 +21,13 @@ namespace MobyShop.WebAPI.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public List<Models.Klijenti> Get([FromQuery] KlijentiSearchRequest request)
         {
             return _service.Get(request);
         }
         [HttpGet]
+        [AllowAnonymous]
         [Route("Authenticiraj/{username},{password}")]
         public Models.Klijenti Authenticiraj(string username, string password)
         {
@@ -32,6 +36,7 @@ namespace MobyShop.WebAPI.Controllers
 
 
         [HttpPost]
+        [AllowAnonymous]
         public void Insert(KlijentiInsertRequest request)
         {
             _service.Insert(request);

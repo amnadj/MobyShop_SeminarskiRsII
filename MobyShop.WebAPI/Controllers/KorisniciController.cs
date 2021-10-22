@@ -6,9 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using MobyShop.Model.Requests;
 using MobyShop.WebAPI.Services;
 using MobyShop.Models;
+using Microsoft.AspNetCore.Authorization;
+
 namespace MobyShop.WebAPI.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class KorisniciController : ControllerBase
     {
@@ -25,6 +28,7 @@ namespace MobyShop.WebAPI.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         [Route("Authenticiraj/{username},{password}")]
         public Korisnici Authenticiraj(string username, string password)
         {

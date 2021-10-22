@@ -10,8 +10,8 @@ namespace MobyShop.MobileA
 {
     public class APIService
     {
-        //public static string Username { get; set; }
-        //public static string Password { get; set; }
+        public static string Username { get; set; }
+        public static string Password { get; set; }
 
         private readonly string _route;
 
@@ -30,7 +30,7 @@ namespace MobyShop.MobileA
         {
             var url = $"{_apiUrl}/{_route}/GetSlicneArtikle/{id}";
 
-            return await url.GetJsonAsync<T>();
+            return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
         }
         public async Task<T> Get<T>(object search)
         {
@@ -44,13 +44,12 @@ namespace MobyShop.MobileA
                     url += await search.ToQueryString();
                 }
 
-                return await url.GetJsonAsync<T>();
+                return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
             }
             catch (FlurlHttpException ex)
             {
                 if (ex.Call.HttpStatus == System.Net.HttpStatusCode.Unauthorized)
                 {
-                    //MessageBox.Show("Niste authentificirani");
                     await Application.Current.MainPage.DisplayAlert("Greška", "Niste authentificirani", "OK");
                 }
                 throw;
@@ -60,13 +59,13 @@ namespace MobyShop.MobileA
         {
             var url = $"{_apiUrl}/{_route}/Authenticiraj/{username},{password}";
 
-            return await url.GetJsonAsync<T>();
+            return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
         }
         public async Task<T> GetById<T>(object id)
         {
             var url = $"{_apiUrl}/{_route}/{id}";
 
-            return await url.GetJsonAsync<T>();
+            return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
         }
 
         public async Task<T> Insert<T>(object request)
@@ -75,7 +74,7 @@ namespace MobyShop.MobileA
 
             try
             {
-                return await url.PostJsonAsync(request).ReceiveJson<T>();
+                return await url.WithBasicAuth(Username, Password).PostJsonAsync(request).ReceiveJson<T>();
             }
             catch (FlurlHttpException ex)
             {
@@ -99,7 +98,7 @@ namespace MobyShop.MobileA
             {
                 var url = $"{_apiUrl}/{_route}/{id}";
 
-                return await url.PutJsonAsync(request).ReceiveJson<T>();
+                return await url.WithBasicAuth(Username, Password).PutJsonAsync(request).ReceiveJson<T>();
             }
             catch (FlurlHttpException ex)
             {

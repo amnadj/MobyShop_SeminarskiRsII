@@ -48,6 +48,8 @@ namespace MobyShop.MobileA.ViewModels
 
                 if (klijent != null)
                 {
+                    APIService.Username = Username;
+                    APIService.Password = Password;
                     Global.PrijavljeniKlijent = klijent;
 
                     await Application.Current.MainPage.DisplayAlert("Uspjeh", "Dobrodosli " + klijent.Ime + " " + klijent.Prezime, "OK");
