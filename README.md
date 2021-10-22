@@ -7,9 +7,9 @@ Login podaci za Desktop aplikaciju (PRODAVAC): Username: prodavac
 
 Password: test
 
-Login podaci za Mobile aplikaciju: Username: amna123
+Login podaci za Mobile aplikaciju: Username: user
 
-Password: amna123
+Password: test
 
 # Uputstvo
 
