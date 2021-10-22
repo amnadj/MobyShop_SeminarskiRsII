@@ -36,6 +36,12 @@ namespace MobyShop.MobileA.Views
 
         private async void Zakljuci_Clicked(object sender, EventArgs e)
         {
+            if(model.NarudzbaList.Count == 0)
+            {
+                await DisplayAlert("Greška", "Nije moguće zaključiti praznu narudžbu.", "OK");
+                return;
+            }
+
             List<Narudzbe> list = await _service.Get<List<Narudzbe>>(null);
             int najveci = int.MinValue;
             foreach (var item in list)
@@ -101,12 +107,20 @@ namespace MobyShop.MobileA.Views
 
         }
 
-        private void Otkazi_Clicked(object sender, EventArgs e)
+        private async void Otkazi_Clicked(object sender, EventArgs e)
         {
+            if (model.NarudzbaList.Count == 0)
+            {
+                await DisplayAlert("Greška", "Nije moguće otkazati praznu narudžbu.", "OK");
+                return;
+            }
+
             model.NarudzbaList.Clear();
             CartService.Cart.Clear();
             lblBrojArtikala.Text = "Broj artikala: 0";
             lblIznos.Text = "Iznos: 0 KM";
+
+            await DisplayAlert("Uspjeh", "Narudžba je uspješno otkazana.", "OK");
 
         }
     }
