@@ -31,7 +31,7 @@ namespace MobyShop.WinUI.Nabavke
             {
                 Models.Nabavke nova = new Models.Nabavke();
 
-                if (dateTimePicker1.Value < item.Datum && item.Datum < dateTimePicker2.Value)
+                if (dateTimePicker1.Value.Date <= item.Datum.Date && item.Datum.Date <= dateTimePicker2.Value.Date)
                 {
                     nova = item;
                     lista.Add(nova);
@@ -41,7 +41,7 @@ namespace MobyShop.WinUI.Nabavke
             }
 
             lista.Insert(0, new Models.Nabavke());
-            cmbNabavke.DisplayMember = "Napomena";
+            cmbNabavke.DisplayMember = "BrojNabavke";
             cmbNabavke.ValueMember = "NabavkaId";
             cmbNabavke.DataSource = lista;
 
