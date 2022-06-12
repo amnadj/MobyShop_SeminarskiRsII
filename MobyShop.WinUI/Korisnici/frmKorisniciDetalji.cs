@@ -1,4 +1,5 @@
 ﻿using MobyShop.Model.Requests;
+using MobyShop.WinUI.Helper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,12 +17,14 @@ namespace MobyShop.WinUI.Korisnici
     {
         APIService _service = new APIService("korisnici");
         APIService _ulogeService = new APIService("uloge");
+      
 
         private int? _id = null;
-        public frmKorisniciDetalji(int? id = null)
+        public frmKorisniciDetalji( int? id = null)
         {
             InitializeComponent();
             _id = id;
+     
         }
 
         private async void frmKorisniciDetalji_Load(object sender, EventArgs e)
@@ -60,11 +63,12 @@ namespace MobyShop.WinUI.Korisnici
 
         private void btnSnimi_Click(object sender, EventArgs e)
         {
-            if (ValidateChildren())
+            KorisniciInsertRequest request = null;
+            if (ValidirajUnos())
             {
                 var roleList = clbRole.CheckedItems.Cast<Models.Uloge>().Select(x => x.UlogaId).ToList();
 
-                var request = new KorisniciInsertRequest
+                 request = new KorisniciInsertRequest
                 {
                     Email = txtEmail.Text,
                     Ime = txtIme.Text,
@@ -76,19 +80,35 @@ namespace MobyShop.WinUI.Korisnici
                     Uloge = roleList
                 };
 
-
                 if (!_id.HasValue)
                 {
                     _service.Insert<Models.Korisnici>(request);
                     MessageBox.Show("Uspješno dodan korisnik");
+                    this.Close();
                 }
                 else
                 {
                     _service.Update<Models.Korisnici>(_id.Value, request);
                     MessageBox.Show("Uspješno izmjenjeni podaci o korisniku");
+                    this.Close();
                 }
+                
             }
+            else
+            {
+                // ako validacija nije uspijesna
+                MessageBox.Show("Unesite  podatke");
+            }
+        }
 
+        private bool ValidirajUnos()
+        {
+            return
+                Validator.ValidirajKontrolu(txtIme, err, "Obavezna vrijednost") &&
+                Validator.ValidirajKontrolu(txtPrezime, err, "Obavezna vrijednost") &&
+                Validator.ValidirajKontrolu(txtTelefon, err, "Obavezna vrijednost") &&
+                Validator.ValidirajKontrolu(txtEmail, err, "Obavezna vrijednost") &&
+                Validator.ValidirajKontrolu(txtKorisnickoIme, err, "Obavezna vrijednost");
         }
     }
 }

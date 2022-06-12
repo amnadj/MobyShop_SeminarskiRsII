@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tabArtikli2 = new System.Windows.Forms.TabPage();
             this.label6 = new System.Windows.Forms.Label();
             this.txtProcesor = new System.Windows.Forms.TextBox();
@@ -60,10 +61,12 @@
             this.label9 = new System.Windows.Forms.Label();
             this.txtNaziv = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.err = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabArtikli2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabArtikli1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSlika)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.err)).BeginInit();
             this.SuspendLayout();
             // 
             // tabArtikli2
@@ -368,6 +371,10 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // err
+            // 
+            this.err.ContainerControl = this;
+            // 
             // frmArtikliDetalji
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -383,6 +390,7 @@
             this.tabArtikli1.ResumeLayout(false);
             this.tabArtikli1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSlika)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.err)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -421,5 +429,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtNaziv;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ErrorProvider err;
     }
 }

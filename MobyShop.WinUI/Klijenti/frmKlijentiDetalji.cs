@@ -1,4 +1,5 @@
 ﻿using MobyShop.Model.Requests;
+using MobyShop.WinUI.Helper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -37,9 +38,9 @@ namespace MobyShop.WinUI.Klijenti
             }
         }
 
-        private async void BtnSnimi_Click(object sender, EventArgs e)
+        private void BtnSnimi_Click(object sender, EventArgs e)
         {
-            if (ValidateChildren())
+            if (ValidirajUnos())
             {
 
                 var request = new KlijentiInsertRequest
@@ -58,13 +59,30 @@ namespace MobyShop.WinUI.Klijenti
                 {
                     _service.Insert<Models.Klijenti>(request);
                     MessageBox.Show("Uspješno dodan klijent");
+                    this.Close();
                 }
                 else
                 {
                     _service.Update<Models.Klijenti>(_id.Value, request);
                     MessageBox.Show("Uspješno izmjenjeni podaci o klijentu");
+                    this.Close();
                 }
             }
+            else
+            {
+                // ako validacija nije uspijesna
+                MessageBox.Show("Unesite  podatke");
+            }
+        }
+
+        private bool ValidirajUnos()
+        {
+            return
+                Validator.ValidirajKontrolu(txtIme, err, "Obavezna vrijednost") &&
+                Validator.ValidirajKontrolu(txtPrezime, err, "Obavezna vrijednost") &&
+                Validator.ValidirajKontrolu(txtEmail, err, "Obavezna vrijednost") &&
+                Validator.ValidirajKontrolu(txtTelefon, err, "Obavezna vrijednost") &&
+                Validator.ValidirajKontrolu(txtKorisnickoIme, err, "Obavezna vrijednost");
         }
     }
 }

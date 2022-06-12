@@ -40,7 +40,7 @@ namespace MobyShop.WinUI.Narudzbe
             dgvNarudzbe.DataSource = result;
         }
 
-        private void dgvNarudzbe_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private async void dgvNarudzbe_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
 
@@ -49,7 +49,10 @@ namespace MobyShop.WinUI.Narudzbe
             {
                 int NarudzbaId = Convert.ToInt32(dgvNarudzbe.Rows[dgvNarudzbe.CurrentRow.Index].Cells[0].Value);
                 frmNarudzbeDetalji frm = new frmNarudzbeDetalji(NarudzbaId);
-                frm.Show();
+                frm.ShowDialog();
+                var result = await _service.Get<List<Models.Narudzbe>>(null);
+
+                dgvNarudzbe.DataSource = result;
             }
         }
     }

@@ -1,4 +1,6 @@
-﻿namespace MobyShop.WinUI.Korisnici
+﻿using System.Collections.Generic;
+
+namespace MobyShop.WinUI.Korisnici
 {
     partial class frmKorisnici
     {

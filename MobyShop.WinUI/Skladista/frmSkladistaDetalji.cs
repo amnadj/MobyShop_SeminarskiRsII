@@ -1,4 +1,5 @@
 ﻿using MobyShop.Model.Requests;
+using MobyShop.WinUI.Helper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +24,7 @@ namespace MobyShop.WinUI.Skladista
 
         private void btnSnimi_Click(object sender, EventArgs e)
         {
+            if (ValidirajUnos()) { 
             var request = new SkladistaInsertRequest
             {
                 Naziv = txtNaziv.Text,
@@ -31,6 +33,19 @@ namespace MobyShop.WinUI.Skladista
             };
             _service.Insert<Models.Skladista>(request);
             MessageBox.Show("Uspješno dodano skladište");
+            this.Close();
+            }
+
+            else
+            {
+                MessageBox.Show("Unesite podatke");
+            }
         }
+    private bool ValidirajUnos()
+    {
+        return
+            Validator.ValidirajKontrolu(txtNaziv, err, "Obavezna vrijednost") &&
+            Validator.ValidirajKontrolu(txtAdresa, err, "Obavezna vrijednost");
     }
+}
 }

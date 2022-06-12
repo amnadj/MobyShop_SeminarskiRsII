@@ -219,6 +219,7 @@
     <Compile Include="Global.cs" />
     <Compile Include="Helper\ByteToImage.cs" />
     <Compile Include="Helper\SlikaHelper.cs" />
+    <Compile Include="Helper\Validator.cs" />
     <Compile Include="Izvjestaji\frmIzvjestajiIndex.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -292,6 +293,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Artikli\frmArtikliDetalji.resx">
       <DependentUpon>frmArtikliDetalji.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dobavljaci\frmDobavljaci.resx">
       <DependentUpon>frmDobavljaci.cs</DependentUpon>
@@ -347,6 +349,7 @@
     </Compile>
     <EmbeddedResource Include="Skladista\frmSkladista.resx">
       <DependentUpon>frmSkladista.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Skladista\frmSkladistaDetalji.resx">
       <DependentUpon>frmSkladistaDetalji.cs</DependentUpon>

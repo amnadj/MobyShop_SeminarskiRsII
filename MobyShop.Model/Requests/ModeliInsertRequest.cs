@@ -7,7 +7,6 @@ namespace MobyShop.Model.Requests
 {
     public class ModeliInsertRequest
     {
-        [Required]
         public string Naziv { get; set; }
     }
 }

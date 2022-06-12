@@ -24,6 +24,7 @@ namespace MobyShop.WinUI.Korisnici
 
         private async void btnPretraga_Click(object sender, EventArgs e)
         {
+            dgvKorisnici.AutoGenerateColumns = false;
             var search = new KorisniciSearchRequest()
             {
                 Ime = txtPretraga.Text,
@@ -34,13 +35,16 @@ namespace MobyShop.WinUI.Korisnici
             dgvKorisnici.DataSource = result;
         }
 
-        private void dgvKorisnici_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private async void dgvKorisnici_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             var korisnikId = dgvKorisnici.Rows[e.RowIndex].Cells[0].Value;
 
             frmKorisniciDetalji frm = new frmKorisniciDetalji(int.Parse(korisnikId.ToString()));
-            frm.Show();
-        }
+            frm.ShowDialog();
+            var result = await _service.Get<List<Models.Korisnici>>(null);
 
+            dgvKorisnici.DataSource = result;
+        }
+        
     }
 }

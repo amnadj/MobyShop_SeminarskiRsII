@@ -7,7 +7,7 @@ namespace MobyShop.Model.Requests
 {
     public class ProizvodjaciInsertRequest
     {
-        [Required]
+       
         public string Naziv { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using MobyShop.Model.Requests;
+using MobyShop.WinUI.Helper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,21 +24,40 @@ namespace MobyShop.WinUI.Dobavljaci
 
         private void btnSnimi_Click(object sender, EventArgs e)
         {
-            var request = new DobavljaciInsertRequest
+            if (ValidirajUnos())
             {
-                Naziv = txtNaziv.Text,
-                KontaktOsoba = txtKontaktOsoba.Text,
-                Adresa = txtAdresa.Text,
-                Telefon = txtTelefon.Text,
-                Fax = txtFax.Text,
-                Web = txtWeb.Text,
-                Email = txtEmail.Text,
-                ZiroRacuni = txtZiroRacuni.Text,
-                Napomena = txtNapomena.Text,
-                Status = txtStatus.Checked
-            };
-            _service.Insert<Models.Dobavljaci>(request);
-            MessageBox.Show("Uspješno dodan Dobavljac");
+                var request = new DobavljaciInsertRequest
+                {
+                    Naziv = txtNaziv.Text,
+                    KontaktOsoba = txtKontaktOsoba.Text,
+                    Adresa = txtAdresa.Text,
+                    Telefon = txtTelefon.Text,
+                    Fax = txtFax.Text,
+                    Web = txtWeb.Text,
+                    Email = txtEmail.Text,
+                    ZiroRacuni = txtZiroRacuni.Text,
+                    Napomena = txtNapomena.Text,
+                    Status = txtStatus.Checked
+                };
+                _service.Insert<Models.Dobavljaci>(request);
+                MessageBox.Show("Uspješno dodan Dobavljac");
+                this.Close();
+            }
+            else
+            {
+                // ako validacija nije uspijesna
+                MessageBox.Show("Unesite  podatke");
+            }
+        }
+
+        private bool ValidirajUnos()
+        {
+            return
+                Validator.ValidirajKontrolu(txtNaziv, err, "Obavezna vrijednost") &&
+                Validator.ValidirajKontrolu(txtKontaktOsoba, err, "Obavezna vrijednost") &&
+                Validator.ValidirajKontrolu(txtAdresa, err, "Obavezna vrijednost") &&
+                Validator.ValidirajKontrolu(txtTelefon, err, "Obavezna vrijednost") &&
+                Validator.ValidirajKontrolu(txtEmail, err, "Obavezna vrijednost");
         }
     }
 }

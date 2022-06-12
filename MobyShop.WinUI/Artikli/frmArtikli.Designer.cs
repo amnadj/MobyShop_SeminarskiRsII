@@ -132,7 +132,6 @@
             this.Controls.Add(this.btnTrazi);
             this.Name = "frmArtikli";
             this.Text = "frmArtikli";
-            this.Load += new System.EventHandler(this.frmArtikli_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvArtikli)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

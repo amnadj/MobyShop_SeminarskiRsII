@@ -33,12 +33,14 @@ namespace MobyShop.WinUI.Klijenti
             dgvKlijenti.DataSource = result;
         }
 
-        private void dgvKlijenti_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private async void dgvKlijenti_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             var korisnikId = dgvKlijenti.Rows[e.RowIndex].Cells[0].Value;
 
             frmKlijentiDetalji frm = new frmKlijentiDetalji(int.Parse(korisnikId.ToString()));
-            frm.Show();
+            frm.ShowDialog();
+            var result = await _service.Get<List<Models.Klijenti>>(null);
+            dgvKlijenti.DataSource = result;
         }
     }
 }

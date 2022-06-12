@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label7 = new System.Windows.Forms.Label();
             this.btnSnimi = new System.Windows.Forms.Button();
             this.txtPotvrda = new System.Windows.Forms.TextBox();
@@ -43,6 +44,8 @@
             this.txtPrezime = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtIme = new System.Windows.Forms.TextBox();
+            this.err = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.err)).BeginInit();
             this.SuspendLayout();
             // 
             // label7
@@ -167,6 +170,10 @@
             this.txtIme.Size = new System.Drawing.Size(303, 20);
             this.txtIme.TabIndex = 33;
             // 
+            // err
+            // 
+            this.err.ContainerControl = this;
+            // 
             // frmKlijentiDetalji
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -190,6 +197,7 @@
             this.Name = "frmKlijentiDetalji";
             this.Text = "frmKlijentiDetalji";
             this.Load += new System.EventHandler(this.FrmKlijentiDetalji_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.err)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -212,5 +220,6 @@
         private System.Windows.Forms.TextBox txtPrezime;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtIme;
+        private System.Windows.Forms.ErrorProvider err;
     }
 }

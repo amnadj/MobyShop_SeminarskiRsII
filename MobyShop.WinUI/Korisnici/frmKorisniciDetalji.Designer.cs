@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label8 = new System.Windows.Forms.Label();
             this.clbRole = new System.Windows.Forms.CheckedListBox();
             this.btnSnimi = new System.Windows.Forms.Button();
@@ -44,6 +45,8 @@
             this.txtPrezime = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtIme = new System.Windows.Forms.TextBox();
+            this.err = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.err)).BeginInit();
             this.SuspendLayout();
             // 
             // label8
@@ -176,6 +179,10 @@
             this.txtIme.Size = new System.Drawing.Size(303, 20);
             this.txtIme.TabIndex = 18;
             // 
+            // err
+            // 
+            this.err.ContainerControl = this;
+            // 
             // frmKorisniciDetalji
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -200,6 +207,7 @@
             this.Name = "frmKorisniciDetalji";
             this.Text = "frmKorisniciDetalji";
             this.Load += new System.EventHandler(this.frmKorisniciDetalji_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.err)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -223,5 +231,6 @@
         private System.Windows.Forms.TextBox txtPrezime;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtIme;
+        private System.Windows.Forms.ErrorProvider err;
     }
 }
