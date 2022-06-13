@@ -39,7 +39,22 @@ class _NarudzbaState extends State<Narudzba> {
       }
     },
       child: Text('Zakljuci narudzbu')
-    ),],)
+    ),
+          ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.blueGrey, // background
+              ),
+              onPressed: (){
+                CartService.artikli.clear();
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => super.widget));
+           },
+              child: Text('Otkazi narudzbu')
+          ),
+        ],
+      )
 
 
     );
