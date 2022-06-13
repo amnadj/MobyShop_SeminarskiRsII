@@ -65,7 +65,6 @@ namespace MobyShop.WinUI.Klijenti
                 {
                     _service.Update<Models.Klijenti>(_id.Value, request);
                     MessageBox.Show("Uspješno izmjenjeni podaci o klijentu");
-                    this.Close();
                 }
             }
             else

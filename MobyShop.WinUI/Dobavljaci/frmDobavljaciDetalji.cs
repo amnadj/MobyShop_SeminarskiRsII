@@ -41,7 +41,6 @@ namespace MobyShop.WinUI.Dobavljaci
                 };
                 _service.Insert<Models.Dobavljaci>(request);
                 MessageBox.Show("Uspješno dodan Dobavljac");
-                this.Close();
             }
             else
             {

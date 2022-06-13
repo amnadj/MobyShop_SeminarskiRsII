@@ -182,7 +182,6 @@ namespace MobyShop.WinUI.Artikli
                 {
                     _artikli.Insert<Models.Artikli>(request);
                     MessageBox.Show("Uspješno dodan artikal");
-                    this.Close();
                 }
                 else
                 {

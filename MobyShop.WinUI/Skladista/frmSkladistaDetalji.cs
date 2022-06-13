@@ -33,7 +33,6 @@ namespace MobyShop.WinUI.Skladista
             };
             _service.Insert<Models.Skladista>(request);
             MessageBox.Show("Uspješno dodano skladište");
-            this.Close();
             }
 
             else

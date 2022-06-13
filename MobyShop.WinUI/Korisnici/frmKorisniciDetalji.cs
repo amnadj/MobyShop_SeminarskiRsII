@@ -84,7 +84,6 @@ namespace MobyShop.WinUI.Korisnici
                 {
                     _service.Insert<Models.Korisnici>(request);
                     MessageBox.Show("Uspješno dodan korisnik");
-                    this.Close();
                 }
                 else
                 {
