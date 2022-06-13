@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+
+String server_adress =  "http://10.0.2.2:5000/api/";
 
 class APIService{
   static String? username;
@@ -17,7 +20,7 @@ class APIService{
 
   static Future<List<dynamic>?> Get(String route, dynamic object) async{
     String queryString = Uri(queryParameters: object).query;
-    String baseUrl="http://192.168.0.80:5000/api/"+route;
+    String baseUrl=server_adress+route;
 
     if(object!=null){
       baseUrl = baseUrl + '?' + queryString;
@@ -36,7 +39,7 @@ class APIService{
   }
 
  static Future<dynamic> GetById(String route, dynamic id) async{
-   String baseUrl="http://192.168.0.206:5000/"+ route + "/" + id;
+   String baseUrl=server_adress + route + "/" + id;
    final String basicAuth='Basic '+base64Encode(utf8.encode('$username:$password'));
    final response= await http.get(
      Uri.parse(baseUrl),
@@ -48,23 +51,8 @@ class APIService{
  }
 
 
-// static Future<dynamic> Post(String route, String body) async {
-//   String baseUrl="http://172.26.16.1:5010/"+route;
-//   final response = await http.post(
-//     Uri.parse(baseUrl),
-//     headers: <String, String>{
-//       'Content-Type': 'application/json; charset=UTF-8',
-//     },
-//     body: body,
-//   );
-//
-//   if (response.statusCode == 201) {
-//     ...
-//   }
-// }
-
   /*static Future<dynamic> getProizvodjac(String route) async {
-    String baseUrl="http://192.168.0.206:5000/api/"+route;
+    String baseUrl=server_adress+route;
 
       baseUrl = baseUrl + '?';
 
