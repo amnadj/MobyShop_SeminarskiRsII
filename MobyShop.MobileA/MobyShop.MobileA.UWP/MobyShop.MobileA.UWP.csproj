@@ -161,12 +161,6 @@
       <Version>1.1.1</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MobyShop.MobileA\MobyShop.MobileA.csproj">
-      <Project>{8451DE06-7083-4D20-89B1-8734395ADD0F}</Project>
-      <Name>MobyShop.MobileA</Name>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
