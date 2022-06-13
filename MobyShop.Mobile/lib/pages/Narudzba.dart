@@ -30,6 +30,9 @@ class _NarudzbaState extends State<Narudzba> {
           CartService.artikli.values.map((e) => CustomCard(e)).toList(),
         ),
     ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          primary: Colors.blueGrey, // background
+        ),
     onPressed: (){
       if(CartService.artikli.length > 0) {
         Navigator.of(context).pushReplacementNamed('/payment');
