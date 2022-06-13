@@ -17,16 +17,29 @@ class _NarudzbaState extends State<Narudzba> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Narudzba'),
-          backgroundColor: Colors.blueGrey,
+      appBar: AppBar(
+        title: Text('Narudzba'),
+        backgroundColor: Colors.blueGrey,
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+        ListView(
+      shrinkWrap: true,
+          children:
+          CartService.artikli.values.map((e) => CustomCard(e)).toList(),
         ),
-        body:
-            ListView(
-              children:
-              CartService.artikli.values.map((e) => CustomCard(e)).toList(),
-            ),
-        );
+    ElevatedButton(
+    onPressed: (){
+      if(CartService.artikli.length > 0) {
+        Navigator.of(context).pushReplacementNamed('/payment');
+      }
+    },
+      child: Text('Zakljuci narudzbu')
+    ),],)
+
+
+    );
   }
 
   void incrementValue(String id, bool add) {
@@ -93,24 +106,6 @@ class _NarudzbaState extends State<Narudzba> {
           ),
 
         )
-        );
-
-}
-
-  Widget teds(){
-    return Card(
-      child:
-        Row(
-          children:[
-      Center(
-      child:
-         ElevatedButton(onPressed: () {
-            Navigator.of(context).pushReplacementNamed('/payment');
-
-          },
-            child: Text('Zakljuci narudzbu'))
-      )],
-      ),
     );
   }
 }
