@@ -3,6 +3,7 @@ using MobyShop.WebAPI.Database;
 using MobyShop.WebAPI.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -53,8 +54,8 @@ namespace MobyShop.WebAPI
                     Naziv = "Samsung Galaxy S20+",
                     Sifra = "12345",
                     Cijena =1200,
-                    Slika = null,
-                    SlikaThumb = null,
+                    Slika = File.ReadAllBytes("Images/samsung20.jpg"),
+                    SlikaThumb = File.ReadAllBytes("Images/samsung20.jpg"),
                     Status = true,
                     KarakteristikeId=1,
                     ProizvodjacId=1,
@@ -66,8 +67,8 @@ namespace MobyShop.WebAPI
                     Naziv = "Iphone 12",
                     Sifra = "12346",
                     Cijena = 1800,
-                    Slika = null,
-                    SlikaThumb = null,
+                    Slika = File.ReadAllBytes("Images/iphone.jpg"),
+                    SlikaThumb = File.ReadAllBytes("Images/iphone.jpg"),
                     Status = true,
                     KarakteristikeId = 3,
                     ProizvodjacId = 3,
@@ -79,8 +80,8 @@ namespace MobyShop.WebAPI
                     Naziv = "Samsung Galaxy S10+",
                     Sifra = "2456",
                     Cijena = 900,
-                    Slika = null,
-                    SlikaThumb = null,
+                    Slika = File.ReadAllBytes("Images/samsung10.png"),
+                    SlikaThumb = File.ReadAllBytes("Images/samsung10.png"),
                     Status = true,
                     KarakteristikeId = 1,
                     ProizvodjacId = 1,

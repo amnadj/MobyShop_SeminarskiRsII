@@ -46,15 +46,6 @@ namespace MobyShop.WebAPI
         public DbSet<Database.PoslanaNarudzba> PoslanaNarudzba { get; set; }
         public DbSet<Database.NarudzbePracenjeInfo> NarudzbePracenjeInfo { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            //base.OnConfiguring(optionsBuilder);
-
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer("Server=.;Database=RS2_Seminarski_IB150114;Trusted_Connection=True;");
-            }
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

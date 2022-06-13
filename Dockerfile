@@ -7,8 +7,9 @@ WORKDIR /src
 COPY . . 
 FROM build AS publish 
 RUN dotnet publish "MobyShop.WebAPI" -c Release -o /app
- FROM base AS final 
+FROM base AS final 
 WORKDIR /app 
 COPY --from=publish /app . 
+COPY ./MobyShop.WebAPI/Images ./Images
 
 ENTRYPOINT ["dotnet", "MobyShop.WebAPI.dll"]

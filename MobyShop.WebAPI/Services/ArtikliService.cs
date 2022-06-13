@@ -54,6 +54,7 @@ namespace MobyShop.WebAPI.Services
                 nova.Proizvodjac = item.Proizvodjaci.Naziv;
 
 
+
                 result.Add(nova);
             }
             return result;
